@@ -1,0 +1,24 @@
+.card{
+   display: flex;
+   justify-content: space-between;
+   padding: 5px;
+}
+
+.title, .title2{
+    text-align: center;
+    color: #000000;
+    font-weight: bold;
+}
+
+ion-content{
+    --background:none;
+    background:  linear-gradient(0deg, rgba(55,47,180,1) 0%, rgba(141,141,227,1) 100%);
+    background-size:cover ;
+    background-repeat:no-repeat ;
+    background-position: center top;
+  }
+
+
+ion-chip{
+    background:none;
+}
