@@ -7,85 +7,46 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-text class="title" >
+  <ion-text class="title">
     <h2>Escolha uma senha:</h2>
   </ion-text>
   <ion-card name="card" class="card">
-    <ion-button color="danger">Prioritaria</ion-button>
-    <ion-button color="success">Geral</ion-button>
-    <ion-button color="medium">Exames</ion-button>
+    <ion-button color="danger" (click)="adicionarSenhaNaoChamada('SP')">Prioritaria</ion-button>
+    <ion-button color="success" (click)="adicionarSenhaNaoChamada('SG')">Geral</ion-button>
+    <ion-button color="medium" (click)="adicionarSenhaNaoChamada('SE')">Exames</ion-button>
   </ion-card>
-  
-  <ion-text class="title2" >
+
+  <!-- Senha chamada -->
+  <ion-text class="title" *ngIf="SenhaService.senhaRecente">
     <h2>Senha chamada</h2>
   </ion-text>
-  <ion-card>
+  <ion-card *ngIf="SenhaService.senhaRecente">
     <ion-list>
       <ion-item>
         <ion-chip>
-         <ion-avatar>
-           <img alt="Avatar 1" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-         </ion-avatar>
-         <ion-label>240412 SP02</ion-label>
-          </ion-chip>
+          <ion-avatar>
+            <img alt="Avatar" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+          <ion-label>{{ SenhaService.senhaRecente }}</ion-label>
+        </ion-chip>
       </ion-item>
     </ion-list>
   </ion-card>
-  
-  <ion-text class="title2" >
+
+  <!-- Últimas senhas chamadas -->
+  <ion-text class="title" *ngIf="SenhaService.senhasChamadas.length > 0">
     <h2>Últimas senhas chamadas</h2>
   </ion-text>
-  
-<ion-card name="avatar">
-  <ion-list>
-    
-   <ion-item>
-     <ion-chip>
-      <ion-avatar>
-        <img alt="Avatar 1" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>240412 SP03</ion-label>
-       </ion-chip>
-   </ion-item>
-
-  <ion-item>
-    <ion-chip>
-      <ion-avatar>
-        <img alt="Avatar 2" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>240412 SE04</ion-label>
-    </ion-chip>
-  </ion-item>
-
-  <ion-item >
-    <ion-chip>
-      <ion-avatar>
-        <img alt="Avatar 3" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>240412 SG05 </ion-label>
-    </ion-chip>
-  </ion-item>
-
-  <ion-item>
-    <ion-chip>
-      <ion-avatar>
-        <img alt="Avatar 5" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>240412 SG06</ion-label>
-    </ion-chip>
-  </ion-item>
-  
-  <ion-item>
-    <ion-chip>
-      <ion-avatar>
-        <img alt="Avatar 6" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>240412 SE05</ion-label>
-    </ion-chip>
-  </ion-item>
-  </ion-list>
-</ion-card>
-
- 
-  
+  <ion-card name="avatar">
+    <ion-list *ngFor="let senha of SenhaService.obterUltimasSenhasChamadas()">
+      <ion-item>
+        <ion-chip>
+          <ion-avatar>
+            <img alt="Avatar" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+          <ion-label>{{ senha }}</ion-label>
+        </ion-chip>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

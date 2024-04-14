@@ -1,3 +1,4 @@
+import { SenhaService } from './../services/senha.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+senha: any;
 
-  constructor() {}
+  
+  constructor(public SenhaService: SenhaService) {}
 
-}
+  adicionarSenhaNaoChamada(tipo: string) {
+    this.SenhaService.adicionarSenhaNaoChamada(tipo);
+  }
+
+
+  }
+
