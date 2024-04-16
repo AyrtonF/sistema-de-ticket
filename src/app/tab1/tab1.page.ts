@@ -14,6 +14,7 @@ senha: any;
 
   adicionarSenhaNaoChamada(tipo: string) {
     this.SenhaService.adicionarSenhaNaoChamada(tipo);
+    return tipo;
   }
 
 

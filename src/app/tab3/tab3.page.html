@@ -1,29 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Relatorio Diario
-    </ion-title>
+    <ion-title> Relatorio Diario </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
- 
   <ion-list>
     <ion-item>
-      <ion-label> Senhas Totais Atendidas</ion-label>
+      <ion-label>Senhas Totais Atendidas</ion-label>
+      <ion-item slot="end">{{ contarSenhasAtendidas() }}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Senhas Prioritarias atendidas</ion-label>
+      <ion-item slot="end">{{ contadorSP }}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Senhas Gerais Atendidas</ion-label>
+      <ion-item slot="end">{{contadorSG}}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Senhas para exames atendidas</ion-label>
+      <ion-item slot="end">{{contadorSE}}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Quantidade de Senhas Emitidas</ion-label>
+      <ion-text slot="end">{{ contarSenhasEmitidas() }}</ion-text>
     </ion-item>
   </ion-list>
-  
 </ion-content>
