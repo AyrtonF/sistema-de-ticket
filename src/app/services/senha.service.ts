@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Iticket }from './ticket'
+import { Iticket }from './Iticket'
 @Injectable({
   providedIn: 'root'
 })
@@ -17,11 +17,12 @@ export class SenhaService {
   Senha: any;
   senhasGeraisAtendidas: Senha[] = []
   senhasExamesAtendidas: Senha[] = []
-  senhasPrioridadesAtedidas: Senha[] = []
+  senhasPrioridadesAtendidas: Senha[] = []
+
 
   constructor() { }
 
-  // Função para gerar uma senha com base no tipo (SP, SG, SE)
+  
   gerarNomeDeSenha(tipo: string):string {
   
     const date = new Date();
@@ -37,17 +38,23 @@ export class SenhaService {
     return nomeSenha;
 
   }
-  ordenarSenhas() {
-    // Ordenar as senhas não chamadas pela categoria e pela data de emissão
-    this.senhasNaoChamadas.sort((a, b) => {
-        // Comparar a categoria das senhas
-        if (a.categoria !== b.categoria) {
-            return a.categoria.localeCompare(b.categoria);
+   ordenarSenhas(senhasNaoChamadas:Senha[]) {
+    senhasNaoChamadas.sort((a,b)=>{
+      if (a.categoria !== b.categoria) { //Se forem de categorias diferentes
+        const priority: { [key: string]: number } = { 'SP': 1, 'SE': 2, 'SG': 3 };
+        let priorityComparison = priority[a.categoria] - priority[b.categoria];
+        if (priorityComparison !== 0) {
+          return priorityComparison;
+        } else {
+          
+            return a.dataEmissao.getTime() - b.dataEmissao.getTime();
         }
-
-        // Se as categorias forem iguais, comparar as datas de emissão das senhas
-        return a.dataEmissao.getTime() - b.dataEmissao.getTime();
-    });
+      }
+      return a.dataEmissao.getTime() - b.dataEmissao.getTime();
+    
+      })
+   
+ 
 }
 
   adicionarSenhaNaoChamada(categoria: string) {
@@ -75,11 +82,22 @@ export class SenhaService {
       console.log("Não há mais senhas disponíveis.");
       return;
     }
+    let verificador:boolean = false
     
-    let senha:Senha = this.senhasNaoChamadas.shift()!;
+    this.ordenarSenhas(this.senhasNaoChamadas)
+   let senha:Senha = this.senhasNaoChamadas.shift()!;
+   
+   if (senha.categoria == "SG") {
+    this.senhasGeraisAtendidas.push(new Senha(senha.nome, senha.categoria, senha.dataEmissao));
+}
+if (senha.categoria == "SP") {
+    this.senhasPrioridadesAtendidas.push(new Senha(senha.nome, senha.categoria, senha.dataEmissao));
+}
+if (senha.categoria == "SE") {
+    this.senhasExamesAtendidas.push(new Senha(senha.nome, senha.categoria, senha.dataEmissao));  
+}
     this.senhasChamadas.push(senha);
     this.senhaRecente = senha.nome
-  
   }
 
   obterUltimasSenhasChamadas() {
