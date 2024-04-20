@@ -8,23 +8,23 @@
   <ion-list>
     <ion-item>
       <ion-label>Senhas Totais Atendidas</ion-label>
-      <ion-item slot="end">{{ contarSenhasAtendidas() }}</ion-item>
+      <ion-item slot="end">{{this.SenhaService.senhasChamadas.length}}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Senhas Prioritarias atendidas</ion-label>
-      <ion-item slot="end">{{ contadorSP }}</ion-item>
+      <ion-item slot="end">{{ this.SenhaService.senhasPrioridades.length}}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Senhas Gerais Atendidas</ion-label>
-      <ion-item slot="end">{{contadorSG}}</ion-item>
+      <ion-item slot="end">{{this.SenhaService.senhasGerais.length}}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Senhas para exames atendidas</ion-label>
-      <ion-item slot="end">{{contadorSE}}</ion-item>
+      <ion-item slot="end">{{this.SenhaService.senhasExames.length}}</ion-item>
     </ion-item>
     <ion-item>
       <ion-label>Quantidade de Senhas Emitidas</ion-label>
-      <ion-text slot="end">{{ contarSenhasEmitidas() }}</ion-text>
+      <ion-text slot="end">{{ this.SenhaService.senhasNaoChamadas.length + this.SenhaService.senhasChamadas.length }}</ion-text>
     </ion-item>
   </ion-list>
 </ion-content>

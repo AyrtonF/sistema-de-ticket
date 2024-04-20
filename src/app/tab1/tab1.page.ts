@@ -8,15 +8,7 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 senha: any;
-
-  
   constructor(public SenhaService: SenhaService) {}
-
-  adicionarSenhaNaoChamada(tipo: string) {
-    this.SenhaService.adicionarSenhaNaoChamada(tipo);
-    return tipo;
-  }
-
 
   }
 

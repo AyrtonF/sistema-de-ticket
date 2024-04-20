@@ -11,9 +11,9 @@
     <h2>Escolha uma senha:</h2>
   </ion-text>
   <ion-card name="card" class="card">
-    <ion-button color="danger" (click)="adicionarSenhaNaoChamada('SP')">Prioritaria</ion-button>
-    <ion-button color="success" (click)="adicionarSenhaNaoChamada('SG')">Geral</ion-button>
-    <ion-button color="medium" (click)="adicionarSenhaNaoChamada('SE')">Exames</ion-button>
+    <ion-button color="danger" (click)="this.SenhaService.adicionarSenhaNaoChamada('SP')">Prioritaria</ion-button>
+    <ion-button color="success" (click)="this.SenhaService.adicionarSenhaNaoChamada('SG')">Geral</ion-button>
+    <ion-button color="medium" (click)="this.SenhaService.adicionarSenhaNaoChamada('SE')">Exames</ion-button>
   </ion-card>
 
   <!-- Senha chamada -->
